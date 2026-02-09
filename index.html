@@ -5,13 +5,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Happy Birthday Aabha</title>
 
-    <!-- BASIC STYLING -->
     <style>
         body {
             margin: 0;
             font-family: Arial, sans-serif;
             background: #fff0f5;
-            color: #333;
+            color: white;
             text-align: center;
         }
 
@@ -19,36 +18,137 @@
             padding: 40px 20px;
         }
 
-        h1, h2 {
-            color: #d63384;
+        h1 {
+            font-size: 2.5rem;
         }
 
-        /* HERO SECTION */
+        p {
+            font-size: 1.2rem;
+        }
+
+        /* ================= HERO ================= */
+
         .hero {
-            min-height: 100vh;
-            background: linear-gradient(to bottom right, #ffdde1, #ee9ca7);
+            position: relative;
+            height: 100vh;
+            overflow: hidden;
             display: flex;
-            flex-direction: column;
             justify-content: center;
             align-items: center;
         }
 
-        .hero h1 {
-            font-size: 2.5rem;
+        /* BACKGROUND CAROUSEL */
+        .carousel {
+            position: absolute;
+            inset: 0;
+            z-index: 1;
         }
 
-        .hero p {
-            font-size: 1.2rem;
+        .carousel img {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            opacity: 0;
+            transition: opacity 1.5s ease-in-out;
         }
 
-        /* MESSAGE CARD */
+        .carousel img.active {
+            opacity: 1;
+        }
+
+        /* DARK OVERLAY */
+        .carousel::after {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.4);
+        }
+
+        /* HERO TEXT */
+        .hero-content {
+            position: relative;
+            z-index: 5;
+            max-width: 90%;
+        }
+
+        /* CONFETTI */
+        .confetti {
+            position: absolute;
+            inset: 0;
+            background-image:
+                radial-gradient(circle, #ff6f91 2px, transparent 2px),
+                radial-gradient(circle, #ffc75f 2px, transparent 2px),
+                radial-gradient(circle, #845ec2 2px, transparent 2px);
+            background-size: 50px 50px;
+            animation: confettiMove 12s linear infinite;
+            opacity: 0.4;
+            z-index: 2;
+        }
+
+        @keyframes confettiMove {
+            from { background-position: 0 0; }
+            to { background-position: 0 100vh; }
+        }
+
+        /* HEARTS */
+        .heart {
+            position: absolute;
+            bottom: -40px;
+            width: 20px;
+            height: 20px;
+            background: #ff4d6d;
+            transform: rotate(45deg);
+            animation: floatHeart 7s infinite ease-in;
+            z-index: 3;
+        }
+
+        .heart::before,
+        .heart::after {
+            content: "";
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background: #ff4d6d;
+            border-radius: 50%;
+        }
+
+        .heart::before {
+            top: -10px;
+            left: 0;
+        }
+
+        .heart::after {
+            left: -10px;
+            top: 0;
+        }
+
+        .heart.one { left: 20%; animation-delay: 0s; }
+        .heart.two { left: 50%; animation-delay: 2s; }
+        .heart.three { left: 75%; animation-delay: 4s; }
+
+        @keyframes floatHeart {
+            0% { transform: translateY(0) rotate(45deg); opacity: 0; }
+            10% { opacity: 1; }
+            100% { transform: translateY(-120vh) rotate(45deg); opacity: 0; }
+        }
+
+        /* FIREWORKS */
+        #fireworks {
+            position: absolute;
+            inset: 0;
+            z-index: 4;
+            pointer-events: none;
+        }
+
+        /* MESSAGE SECTION */
         .card {
             background: white;
+            color: #333;
             max-width: 700px;
             margin: auto;
             padding: 25px;
             border-radius: 12px;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
         }
 
         /* GALLERY */
@@ -65,194 +165,120 @@
             border-radius: 10px;
         }
 
-        /* TIMELINE */
-        .timeline {
-            max-width: 700px;
-            margin: auto;
-            text-align: left;
-        }
-
-        .timeline p {
-            background: white;
-            padding: 15px;
-            border-radius: 10px;
-            margin-bottom: 15px;
-        }
-
-        /* FOOTER */
         footer {
             font-size: 0.9rem;
             color: #777;
-            padding-bottom: 20px;
+            padding: 20px;
         }
-
-        /* CELEBRATION HERO */
-.celebration {
-    position: relative;
-    overflow: hidden;
-}
-
-.hero-content {
-    position: relative;
-    z-index: 2;
-}
-
-/* BALLOONS */
-.balloon {
-    position: absolute;
-    bottom: -150px;
-    width: 80px;
-    height: 100px;
-    border-radius: 50%;
-    animation: floatUp 8s infinite ease-in;
-    opacity: 0.8;
-}
-
-.balloon::after {
-    content: "";
-    position: absolute;
-    width: 2px;
-    height: 50px;
-    background: #555;
-    top: 100%;
-    left: 50%;
-}
-
-.balloon.pink {
-    background: #ff6f91;
-    left: 20%;
-    animation-delay: 0s;
-}
-
-.balloon.purple {
-    background: #845ec2;
-    left: 50%;
-    animation-delay: 2s;
-}
-
-.balloon.yellow {
-    background: #ffc75f;
-    left: 75%;
-    animation-delay: 4s;
-}
-
-@keyframes floatUp {
-    0% {
-        transform: translateY(0);
-        opacity: 0;
-    }
-    10% {
-        opacity: 1;
-    }
-    100% {
-        transform: translateY(-120vh);
-        opacity: 0;
-    }
-}
-
-/* CONFETTI */
-.confetti {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    background-image:
-        radial-gradient(circle, #ff6f91 2px, transparent 2px),
-        radial-gradient(circle, #ffc75f 2px, transparent 2px),
-        radial-gradient(circle, #845ec2 2px, transparent 2px);
-    background-size: 50px 50px;
-    animation: confettiMove 12s linear infinite;
-    opacity: 0.3;
-}
-
-@keyframes confettiMove {
-    from {
-        background-position: 0 0;
-    }
-    to {
-        background-position: 0 100vh;
-    }
-}
-
-
-        
     </style>
 </head>
 
 <body>
 
-    <!-- HERO SECTION -->
-    <section class="hero celebration">
+<!-- ================= HERO ================= -->
+
+<section class="hero">
+
+    <div class="carousel">
+        <!-- CHANGE IMAGE NAMES IF NEEDED -->
+        <img src="image1.jpg" class="active">
+        <img src="image2.jpg">
+        <img src="image3.jpg">
+        <img src="image4.jpg">
+    </div>
+
+    <canvas id="fireworks"></canvas>
     <div class="confetti"></div>
 
     <div class="hero-content">
-        <h1>🎉 Happy 24th Birthday, Aabo 🎉</h1>
-        <p>Majha cutie!!! Today is all about you 💖</p>
+        <h1>🎉 Happy 24th Birthday, Aabha 🎉</h1>
+        <p>Today is all about you 💖</p>
     </div>
 
-    <!-- BALLOONS -->
-    <div class="balloon pink"></div>
-    <div class="balloon purple"></div>
-    <div class="balloon yellow"></div>
+    <div class="heart one"></div>
+    <div class="heart two"></div>
+    <div class="heart three"></div>
+
 </section>
 
-    <!-- MESSAGE SECTION -->
-    <section>
-        <h2>A Note For You</h2>
+<!-- ================= MESSAGE ================= -->
 
-        <div class="card">
-            <!-- CHANGE THIS MESSAGE -->
-            <p>
-                Dear Aabha,<br><br>
-                Happy Birthday to the most amazing person in my life.
-                You make everything brighter just by being you.
-                I am grateful for every moment with you and excited for
-                all the memories yet to come.<br><br>
-                Always yours ❤️
-            </p>
-        </div>
-    </section>
-
-    <!-- PHOTO GALLERY -->
-    <section>
-        <h2>Our Memories</h2>
-
-        <div class="gallery">
-            <!-- ADD YOUR PHOTOS HERE -->
-            <!-- Replace image1.jpg, image2.jpg etc with your actual photo names -->
-
-            <img src="image1.jpg" alt="Memory 1">
-            <img src="image2.jpg" alt="Memory 2">
-            <img src="image3.jpg" alt="Memory 3">
-            <img src="image4.jpg" alt="Memory 4">
-        </div>
-    </section>
-
-    <!-- TIMELINE -->
-    <section>
-        <h2>Our Story</h2>
-
-        <div class="timeline">
-            <!-- EDIT THESE MOMENTS -->
-            <p>💫 The day we met</p>
-            <p>✈️ Our first trip together</p>
-            <p>😂 Endless laughs and late nights</p>
-            <p>❤️ Today, celebrating you turning 24</p>
-        </div>
-    </section>
-
-    <!-- FINAL MESSAGE -->
-    <section>
-        <h2>One Last Wish</h2>
+<section>
+    <h2>A Note For You</h2>
+    <div class="card">
         <p>
-            May this year bring you happiness, love, and everything
-            your heart desires 💕
+            Dear Aabha,<br><br>
+            Happy Birthday to the most special person in my life.
+            You bring joy, warmth, and love into everything.
+            I am grateful for you today and always.<br><br>
+            ❤️
         </p>
-    </section>
+    </div>
+</section>
 
-    <!-- FOOTER -->
-    <footer>
-        Made with love just for Aabha | 9 Feb 2026
-    </footer>
+<!-- ================= GALLERY ================= -->
+
+<section>
+    <h2>Our Memories</h2>
+    <div class="gallery">
+        <img src="image1.jpg">
+        <img src="image2.jpg">
+        <img src="image3.jpg">
+        <img src="image4.jpg">
+    </div>
+</section>
+
+<footer>
+    Made with love for Aabha | 9 Feb 2026
+</footer>
+
+<!-- ================= SCRIPT ================= -->
+
+<script>
+/* CAROUSEL */
+const slides = document.querySelectorAll(".carousel img");
+let current = 0;
+
+setInterval(() => {
+    slides[current].classList.remove("active");
+    current = (current + 1) % slides.length;
+    slides[current].classList.add("active");
+}, 3000);
+
+/* FIREWORKS */
+const canvas = document.getElementById("fireworks");
+const ctx = canvas.getContext("2d");
+
+function resizeCanvas() {
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+}
+resizeCanvas();
+window.addEventListener("resize", resizeCanvas);
+
+function firework() {
+    for (let i = 0; i < 150; i++) {
+        let x = canvas.width / 2;
+        let y = canvas.height / 3;
+        let angle = Math.random() * Math.PI * 2;
+        let radius = Math.random() * 150;
+
+        ctx.beginPath();
+        ctx.arc(
+            x + Math.cos(angle) * radius,
+            y + Math.sin(angle) * radius,
+            2,
+            0,
+            Math.PI * 2
+        );
+        ctx.fillStyle = `hsl(${Math.random()*360},100%,60%)`;
+        ctx.fill();
+    }
+    setTimeout(() => ctx.clearRect(0,0,canvas.width,canvas.height), 700);
+}
+
+window.onload = firework;
+</script>
 
 </body>
 </html>
