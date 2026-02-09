@@ -12,6 +12,7 @@
             background: #fff0f5;
             color: white;
             text-align: center;
+            overflow-x: hidden;
         }
 
         section {
@@ -169,6 +170,38 @@
             color: #777;
             padding: 20px;
         }
+        .overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0,0,0,0.45);
+    z-index: 2;
+}
+
+        /* ===== FIX LAYER STACKING ===== */
+
+.hero-content {
+    position: relative;
+    z-index: 5;
+}
+
+.confetti {
+    position: absolute;
+    z-index: 3;
+}
+
+.heart {
+    position: absolute;
+    z-index: 4;
+}
+
+#fireworks {
+    position: absolute;
+    z-index: 4;
+}
+
     </style>
 </head>
 
@@ -185,6 +218,7 @@
         <img src="image3.jpg">
         <img src="image4.jpg">
     </div>
+    <div class="overlay"></div>
 
     <canvas id="fireworks"></canvas>
     <div class="confetti"></div>
