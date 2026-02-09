@@ -85,18 +85,115 @@
             color: #777;
             padding-bottom: 20px;
         }
+
+        /* CELEBRATION HERO */
+.celebration {
+    position: relative;
+    overflow: hidden;
+}
+
+.hero-content {
+    position: relative;
+    z-index: 2;
+}
+
+/* BALLOONS */
+.balloon {
+    position: absolute;
+    bottom: -150px;
+    width: 80px;
+    height: 100px;
+    border-radius: 50%;
+    animation: floatUp 8s infinite ease-in;
+    opacity: 0.8;
+}
+
+.balloon::after {
+    content: "";
+    position: absolute;
+    width: 2px;
+    height: 50px;
+    background: #555;
+    top: 100%;
+    left: 50%;
+}
+
+.balloon.pink {
+    background: #ff6f91;
+    left: 20%;
+    animation-delay: 0s;
+}
+
+.balloon.purple {
+    background: #845ec2;
+    left: 50%;
+    animation-delay: 2s;
+}
+
+.balloon.yellow {
+    background: #ffc75f;
+    left: 75%;
+    animation-delay: 4s;
+}
+
+@keyframes floatUp {
+    0% {
+        transform: translateY(0);
+        opacity: 0;
+    }
+    10% {
+        opacity: 1;
+    }
+    100% {
+        transform: translateY(-120vh);
+        opacity: 0;
+    }
+}
+
+/* CONFETTI */
+.confetti {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-image:
+        radial-gradient(circle, #ff6f91 2px, transparent 2px),
+        radial-gradient(circle, #ffc75f 2px, transparent 2px),
+        radial-gradient(circle, #845ec2 2px, transparent 2px);
+    background-size: 50px 50px;
+    animation: confettiMove 12s linear infinite;
+    opacity: 0.3;
+}
+
+@keyframes confettiMove {
+    from {
+        background-position: 0 0;
+    }
+    to {
+        background-position: 0 100vh;
+    }
+}
+
+
+        
     </style>
 </head>
 
 <body>
 
     <!-- HERO SECTION -->
-    <section class="hero">
-        <h1>🎉 Happy 24th Birthday, Aabha 🎉</h1>
+    <section class="hero celebration">
+    <div class="confetti"></div>
 
-        <!-- CHANGE THIS TEXT -->
-        <p>Today is all about you 💖</p>
-    </section>
+    <div class="hero-content">
+        <h1>🎉 Happy 24th Birthday, Aabo 🎉</h1>
+        <p>Majha cutie!!! Today is all about you 💖</p>
+    </div>
+
+    <!-- BALLOONS -->
+    <div class="balloon pink"></div>
+    <div class="balloon purple"></div>
+    <div class="balloon yellow"></div>
+</section>
 
     <!-- MESSAGE SECTION -->
     <section>
